@@ -7,3 +7,8 @@ spring:
     url: jdbc:postgresql://localhost:5432/cardmng
     username: seungpro
     password: seungpro
+  jpa:
+    show-sql: true
+    database: postgresql
+    hibernate:
+      ddl-auto: update
