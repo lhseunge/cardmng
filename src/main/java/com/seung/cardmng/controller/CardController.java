@@ -32,7 +32,6 @@ public class CardController {
 
     @GetMapping("/{cardId}")
     public String getCard(@PathVariable String cardId) {
-
-        return "card 1";
+        return cardService.getCard(cardId);
     }
 }

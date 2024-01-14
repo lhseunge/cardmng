@@ -9,8 +9,13 @@ import java.util.List;
 public class CardServiceImpl implements CardService {
 
     @Override
+    public String getCard(String cardId) {
+
+        return "card 1";
+    }
+
+    @Override
     public List<String> getCards() {
-        // return null;
 
         return List.of("card 1", "card 2");
     }

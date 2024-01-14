@@ -4,6 +4,7 @@ import java.util.List;
 
 public interface CardService {
 
-    public List<String> getCards();
+    List<String> getCards();
+    String getCard(String cardId);
 
 }
