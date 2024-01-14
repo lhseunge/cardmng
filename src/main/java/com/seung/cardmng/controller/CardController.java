@@ -1,5 +1,6 @@
 package com.seung.cardmng.controller;
 
+import com.seung.cardmng.service.CardService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,12 @@ import java.util.List;
 @RequestMapping("/v1/card")
 public class CardController {
 
+    private final CardService cardService;
+
+    public CardController(CardService cardService) {
+        this.cardService = cardService;
+    }
+
     // @GetMapping
     @Deprecated
     public String helloworld() {
@@ -20,8 +27,7 @@ public class CardController {
 
     @GetMapping()
     public List<String> getCards() {
-
-        return List.of("card 1", "card 2");
+        return cardService.getCards();
     }
 
     @GetMapping("/{cardId}")
