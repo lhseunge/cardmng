@@ -35,4 +35,8 @@ public class CardController {
     public Card getCard(@PathVariable Integer cardId) {
         return cardService.getCard(cardId);
     }
+
+    public Card saveCard(Card card) {
+        return null;
+    }
 }

@@ -8,5 +8,6 @@ public interface CardService {
 
     List<Card> getCards();
     Card getCard(Integer cardId);
+    void saveCard(Card card);
 
 }

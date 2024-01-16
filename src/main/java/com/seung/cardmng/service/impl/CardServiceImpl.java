@@ -10,7 +10,7 @@ import java.util.List;
 @Service
 public class CardServiceImpl implements CardService {
 
-    private final CardRepository<Card, Integer> cardRepository;
+    private final CardRepository cardRepository;
 
     public CardServiceImpl(CardRepository cardRepository) {
         this.cardRepository = cardRepository;
@@ -28,6 +28,18 @@ public class CardServiceImpl implements CardService {
 
         // return List.of("card 1", "card 2");
         return cardRepository.findAll();
+    }
+
+    @Override
+    public void saveCard(Card card) {
+        Card savedCard = cardRepository.save(card);
+
+        if (savedCard == null) {
+            System.out.println("실패");
+        }
+
+        cardRepository.flush();
+
     }
 }
 
