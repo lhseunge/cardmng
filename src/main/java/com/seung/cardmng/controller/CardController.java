@@ -1,5 +1,6 @@
 package com.seung.cardmng.controller;
 
+import com.seung.cardmng.entity.Card;
 import com.seung.cardmng.service.CardService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,12 +27,12 @@ public class CardController {
     }
 
     @GetMapping()
-    public List<String> getCards() {
+    public List<Card> getCards() {
         return cardService.getCards();
     }
 
     @GetMapping("/{cardId}")
-    public String getCard(@PathVariable String cardId) {
+    public Card getCard(@PathVariable Integer cardId) {
         return cardService.getCard(cardId);
     }
 }
