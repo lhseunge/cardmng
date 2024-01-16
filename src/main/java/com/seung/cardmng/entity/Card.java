@@ -7,11 +7,8 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @Entity
 @EntityScan
 @Table(name = "card")
-@NoArgsConstructor
-@AllArgsConstructor
-@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-@Builder
 public class Card {
 
     @Id
@@ -57,5 +54,18 @@ public class Card {
     @Column
     private String etc;
 
+    @Builder
+    public Card(String organization, String nickName, int num1, int num2, int num3, int num4, int cvc, int month, int year, boolean is_credit) {
+        this.organization = organization;
+        this.nickName = nickName;
+        this.num1 = num1;
+        this.num2 = num2;
+        this.num3 = num3;
+        this.num4 = num4;
+        this.cvc = cvc;
+        this.month = month;
+        this.year = year;
+        this.is_credit = is_credit;
+    }
 }
 
