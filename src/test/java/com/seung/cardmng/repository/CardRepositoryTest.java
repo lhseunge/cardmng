@@ -26,7 +26,7 @@ public class CardRepositoryTest {
                 .cvc(123)
                 .month(12)
                 .year(30)
-                .is_credit(false)
+                .credit(false)
                 .build();
 
         Card savedCard = cardRepository.save(card);

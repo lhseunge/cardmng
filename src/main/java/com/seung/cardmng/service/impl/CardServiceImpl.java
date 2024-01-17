@@ -1,5 +1,6 @@
 package com.seung.cardmng.service.impl;
 
+import com.seung.cardmng.dto.CardDto;
 import com.seung.cardmng.entity.Card;
 import com.seung.cardmng.repository.CardRepository;
 import com.seung.cardmng.service.CardService;
@@ -31,7 +32,10 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public void saveCard(Card card) {
+    public Card saveCard(CardDto cardDto) {
+
+         Card card = cardDto.toEntity();
+
         Card savedCard = cardRepository.save(card);
 
         if (savedCard == null) {
@@ -40,6 +44,7 @@ public class CardServiceImpl implements CardService {
 
         cardRepository.flush();
 
+        return card;
     }
 }
 

@@ -1,11 +1,9 @@
 package com.seung.cardmng.controller;
 
+import com.seung.cardmng.dto.CardDto;
 import com.seung.cardmng.entity.Card;
 import com.seung.cardmng.service.CardService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,7 +34,8 @@ public class CardController {
         return cardService.getCard(cardId);
     }
 
-    public Card saveCard(Card card) {
-        return null;
+    @PostMapping()
+    public Card saveCard(@RequestBody CardDto cardDto) {
+        return cardService.saveCard(cardDto);
     }
 }

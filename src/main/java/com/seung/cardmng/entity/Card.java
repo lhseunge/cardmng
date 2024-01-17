@@ -43,19 +43,19 @@ public class Card {
     private int year;
 
     @Column
-    private boolean is_credit;
+    private boolean credit;
 
     @Column
-    private int insert_date;
+    private int insertDate;
 
     @Column
-    private int update_date;
+    private int updateDate;
 
     @Column
     private String etc;
 
-    @Builder
-    public Card(String organization, String nickName, int num1, int num2, int num3, int num4, int cvc, int month, int year, boolean is_credit) {
+    @Builder(buildMethodName = "cardBuilderTest")
+    public Card(String organization, String nickName, int num1, int num2, int num3, int num4, int cvc, int month, int year, boolean credit) {
         this.organization = organization;
         this.nickName = nickName;
         this.num1 = num1;
@@ -65,7 +65,26 @@ public class Card {
         this.cvc = cvc;
         this.month = month;
         this.year = year;
-        this.is_credit = is_credit;
+        this.credit = credit;
     }
+
+    @Builder
+    public Card(int id, String organization, String nickName, int num1, int num2, int num3, int num4, int cvc, int month, int year, boolean credit, int insertDate, int updateDate, String etc) {
+        this.id = id;
+        this.organization = organization;
+        this.nickName = nickName;
+        this.num1 = num1;
+        this.num2 = num2;
+        this.num3 = num3;
+        this.num4 = num4;
+        this.cvc = cvc;
+        this.month = month;
+        this.year = year;
+        this.credit = credit;
+        this.insertDate = insertDate;
+        this.updateDate = updateDate;
+        this.etc = etc;
+    }
+
 }
 
