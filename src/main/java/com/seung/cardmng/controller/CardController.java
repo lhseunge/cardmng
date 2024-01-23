@@ -41,4 +41,9 @@ public class CardController {
     public Card saveCard(@RequestBody CardDto cardDto) {
         return cardService.saveCard(cardDto);
     }
+
+    @PutMapping("/{cardId}")
+    public Card updateCard(@RequestBody CardDto cardDto) {
+        return cardService.updateCard(cardDto);
+    }
 }

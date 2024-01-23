@@ -10,5 +10,6 @@ public interface CardService {
     List<Card> getCards();
     Card getCard(Integer cardId);
     Card saveCard(CardDto cardDto);
+    Card updateCard(CardDto cardDto);
 
 }
