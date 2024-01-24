@@ -1,9 +1,13 @@
 package com.seung.cardmng.dto;
 
 import com.seung.cardmng.entity.Card;
+import lombok.Builder;
 import lombok.Getter;
 
+import java.time.Instant;
+
 @Getter
+@Builder
 public class CardDto {
 
     private String organization;
@@ -16,8 +20,6 @@ public class CardDto {
     private int month;
     private int year;
     private boolean credit;
-    private int insertDate;
-    private int updateDate;
     private String etc;
 
     public Card toEntity() {
@@ -32,8 +34,7 @@ public class CardDto {
                 .month(month)
                 .year(year)
                 .credit(credit)
-                .insertDate(insertDate)
-                .updateDate(updateDate)
+                .insertDate(Instant.now().getEpochSecond())
                 .etc(etc)
                 .build();
     }

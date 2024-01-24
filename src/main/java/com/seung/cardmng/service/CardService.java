@@ -8,7 +8,7 @@ import java.util.List;
 public interface CardService {
 
     List<Card> getCards();
-    Card getCard(Integer cardId);
+    Card getCard(int cardId);
     Card saveCard(CardDto cardDto);
     Card updateCard(int cardId, CardDto cardDto);
     String deleteCard(int cardId);
