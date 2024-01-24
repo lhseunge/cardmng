@@ -6,6 +6,7 @@ import com.seung.cardmng.repository.CardRepository;
 import com.seung.cardmng.service.CardService;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -18,23 +19,21 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public Card getCard(Integer cardId) {
+    public Card getCard(int cardId) {
 
-        // return "card 1";
         return cardRepository.findById(cardId).get();
     }
 
     @Override
     public List<Card> getCards() {
 
-        // return List.of("card 1", "card 2");
         return cardRepository.findAll();
     }
 
     @Override
     public Card saveCard(CardDto cardDto) {
 
-         Card card = cardDto.toEntity();
+        Card card = cardDto.toEntity();
 
         Card savedCard = cardRepository.save(card);
 
@@ -45,6 +44,36 @@ public class CardServiceImpl implements CardService {
         cardRepository.flush();
 
         return card;
+    }
+
+    @Override
+    public Card updateCard(int cardId, CardDto cardDto) {
+
+        Card card = Card.builder()
+                .id(cardId)
+                .organization(cardDto.getOrganization())
+                .nickName(cardDto.getNickName())
+                .num1(cardDto.getNum1())
+                .num2(cardDto.getNum2())
+                .num3(cardDto.getNum3())
+                .num4(cardDto.getNum4())
+                .cvc(cardDto.getCvc())
+                .month(cardDto.getMonth())
+                .year(cardDto.getYear())
+                .credit(cardDto.isCredit())
+                .updateDate(Instant.now().getEpochSecond())
+                .etc(cardDto.getEtc())
+                .build();
+
+        return cardRepository.save(card);
+    }
+
+    @Override
+    public String deleteCard(int cardId) {
+
+        cardRepository.deleteById(cardId);
+
+        return "delete successful";
     }
 }
 

@@ -3,7 +3,6 @@ package com.seung.cardmng.controller;
 import com.seung.cardmng.dto.CardDto;
 import com.seung.cardmng.entity.Card;
 import com.seung.cardmng.service.CardService;
-import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,13 +17,6 @@ public class CardController {
 
     public CardController(CardService cardService) {
         this.cardService = cardService;
-    }
-
-    // @GetMapping
-    @Deprecated
-    @Hidden
-    public String helloworld() {
-        return "hello world";
     }
 
     @GetMapping()
@@ -43,7 +35,12 @@ public class CardController {
     }
 
     @PutMapping("/{cardId}")
-    public Card updateCard(@RequestBody CardDto cardDto) {
-        return cardService.updateCard(cardDto);
+    public Card updateCard(@PathVariable int cardId, @RequestBody CardDto cardDto) {
+        return cardService.updateCard(cardId, cardDto);
+    }
+
+    @DeleteMapping("/{cardId}")
+    public String deleteCard(@PathVariable int cardId) {
+        return cardService.deleteCard(cardId);
     }
 }
