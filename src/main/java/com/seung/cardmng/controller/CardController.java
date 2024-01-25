@@ -1,9 +1,11 @@
 package com.seung.cardmng.controller;
 
+import com.seung.cardmng.common.ResponseData;
 import com.seung.cardmng.dto.CardDto;
 import com.seung.cardmng.entity.Card;
 import com.seung.cardmng.service.CardService;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,27 +22,27 @@ public class CardController {
     }
 
     @GetMapping()
-    public List<Card> getCards() {
-        return cardService.getCards();
+    public ResponseData<List<Card>> getCards() {
+        return new ResponseData<>(cardService.getCards(), HttpStatus.OK.value());
     }
 
     @GetMapping("/{cardId}")
-    public Card getCard(@PathVariable int cardId) {
-        return cardService.getCard(cardId);
+    public ResponseData<Card> getCard(@PathVariable int cardId) {
+        return new ResponseData<>(cardService.getCard(cardId), HttpStatus.OK.value());
     }
 
     @PostMapping()
-    public Card saveCard(@RequestBody CardDto cardDto) {
-        return cardService.saveCard(cardDto);
+    public ResponseData<Card> saveCard(@RequestBody CardDto cardDto) {
+        return new ResponseData<>(cardService.saveCard(cardDto), HttpStatus.OK.value());
     }
 
     @PutMapping("/{cardId}")
-    public Card updateCard(@PathVariable int cardId, @RequestBody CardDto cardDto) {
-        return cardService.updateCard(cardId, cardDto);
+    public ResponseData<Card> updateCard(@PathVariable int cardId, @RequestBody CardDto cardDto) {
+        return new ResponseData<>(cardService.updateCard(cardId, cardDto), HttpStatus.OK.value());
     }
 
     @DeleteMapping("/{cardId}")
-    public String deleteCard(@PathVariable int cardId) {
-        return cardService.deleteCard(cardId);
+    public ResponseData<String> deleteCard(@PathVariable int cardId) {
+        return new ResponseData<>(cardService.deleteCard(cardId), HttpStatus.OK.value());
     }
 }
