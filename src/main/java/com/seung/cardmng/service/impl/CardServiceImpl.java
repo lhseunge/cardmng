@@ -2,6 +2,8 @@ package com.seung.cardmng.service.impl;
 
 import com.seung.cardmng.dto.CardDto;
 import com.seung.cardmng.entity.Card;
+import com.seung.cardmng.exception.CustomException;
+import com.seung.cardmng.exception.ErrorCode;
 import com.seung.cardmng.repository.CardRepository;
 import com.seung.cardmng.service.CardService;
 import org.springframework.stereotype.Service;
@@ -21,7 +23,7 @@ public class CardServiceImpl implements CardService {
     @Override
     public Card getCard(int cardId) {
 
-        return cardRepository.findById(cardId).get();
+        return cardRepository.findById(cardId).orElseThrow(() -> new CustomException(ErrorCode.CARD_NOT_FONUD));
     }
 
     @Override
