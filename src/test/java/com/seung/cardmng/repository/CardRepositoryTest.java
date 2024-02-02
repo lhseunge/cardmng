@@ -12,7 +12,7 @@ public class CardRepositoryTest {
     @Autowired
     private CardRepository cardRepository;
 
-//    @Test
+    @Test
     public void 카드_저장() {
         String nickname = "테스트";
 
@@ -35,7 +35,7 @@ public class CardRepositoryTest {
 
     }
 
-//    @Test
+    @Test
     public void 카드_수정() {
         int cardId = 1;
 
