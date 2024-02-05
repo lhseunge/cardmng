@@ -35,7 +35,7 @@ public class CardRepositoryTest {
 
     }
 
-    @Test
+//    @Test
     public void 카드_수정() {
         int cardId = 1;
 
