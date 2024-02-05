@@ -29,6 +29,6 @@ jobs:
           arguments: build
           cache-read-only: ${{ github.ref != 'refs/heads/development' }}
 
-      - name : Execute Gradle build
-        run : ./gredlew build
+#      - name : Execute Gradle build
+#        run : ./gredlew build
 
