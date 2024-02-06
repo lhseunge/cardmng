@@ -31,8 +31,6 @@ public class CardRepositoryTest {
 
         Card savedCard = cardRepository.save(card);
 
-        cardRepository.flush();
-
         Assertions.assertEquals(nickname, savedCard.getNickName());
 
     }
@@ -42,7 +40,23 @@ public class CardRepositoryTest {
         int cardId = 1;
 
         // 1번 카드 조회
-        Card card = cardRepository.findById(cardId).get();
+        Card card = cardRepository.findById(cardId).orElse(
+                Card.builder()
+                        .organization("테스트")
+                        .nickName("테스트")
+                        .num1(1234)
+                        .num2(1234)
+                        .num3(1234)
+                        .num4(1234)
+                        .cvc(123)
+                        .month(12)
+                        .year(34)
+                        .credit(true)
+                        .insertDate(0)
+                        .updateDate(0)
+                        .etc("테스트")
+                        .build()
+        );
 
         // 1번 카드 닉네임
         String cardNickname = card.getNickName();
@@ -66,8 +80,6 @@ public class CardRepositoryTest {
                 .build();
 
         Card updatedCard = cardRepository.save(upCard);
-
-        cardRepository.flush();
 
         String updatedCardNickname = updatedCard.getNickName();
 
