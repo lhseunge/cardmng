@@ -31,11 +31,13 @@ public class CardRepositoryTest {
 
         Card savedCard = cardRepository.save(card);
 
+        cardRepository.flush();
+
         Assertions.assertEquals(nickname, savedCard.getNickName());
 
     }
 
-//    @Test
+    @Test
     public void 카드_수정() {
         int cardId = 1;
 
@@ -64,6 +66,8 @@ public class CardRepositoryTest {
                 .build();
 
         Card updatedCard = cardRepository.save(upCard);
+
+        cardRepository.flush();
 
         String updatedCardNickname = updatedCard.getNickName();
 
