@@ -17,8 +17,8 @@ public class SwaggerConfig {
 
     private Info apiInfo() {
         return new Info()
-                .title("Springdoc 테스트")
-                .description("Springdoc을 사용한 Swagger UI 테스트")
+                .title("카드 매니저")
+                .description("개인 카드 정보 API")
                 .version("1.0.0");
     }
 }
