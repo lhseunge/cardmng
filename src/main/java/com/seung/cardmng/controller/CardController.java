@@ -31,12 +31,12 @@ public class CardController {
     }
 
     @PostMapping()
-    public ResponseData<Card> saveCard(@RequestBody CardDto cardDto) {
+    public ResponseData<CardDto> saveCard(@RequestBody CardDto cardDto) {
         return new ResponseData<>(cardService.saveCard(cardDto));
     }
 
     @PutMapping("/{cardId}")
-    public ResponseData<Card> updateCard(@PathVariable int cardId, @RequestBody CardDto cardDto) {
+    public ResponseData<CardDto> updateCard(@PathVariable int cardId, @RequestBody CardDto cardDto) {
         return new ResponseData<>(cardService.updateCard(cardId, cardDto));
     }
 
