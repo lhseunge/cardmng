@@ -47,7 +47,12 @@ dependencies {
     implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.3.0'
 
     // https://mvnrepository.com/artifact/com.h2database/h2
-    implementation group: 'com.h2database', name: 'h2', version: '1.4.193'
+//    implementation group: 'com.h2database', name: 'h2', version: '1.4.193'
+    implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
+
+
+    implementation 'org.springframework.security:spring-security-crypto'
+
 
 }
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CardService {
 
-    List<Card> getCards();
+    List<CardDto> getCards();
     Card getCard(int cardId);
     Card saveCard(CardDto cardDto);
     Card updateCard(int cardId, CardDto cardDto);

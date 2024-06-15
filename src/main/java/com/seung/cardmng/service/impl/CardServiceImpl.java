@@ -6,18 +6,24 @@ import com.seung.cardmng.exception.CustomException;
 import com.seung.cardmng.exception.ErrorCode;
 import com.seung.cardmng.repository.CardRepository;
 import com.seung.cardmng.service.CardService;
+import com.seung.cardmng.service.EncryptService;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CardServiceImpl implements CardService {
 
     private final CardRepository cardRepository;
+    private final EncryptService encryptService;
 
-    public CardServiceImpl(CardRepository cardRepository) {
+    public CardServiceImpl(
+            CardRepository cardRepository,
+            EncryptService encryptService) {
         this.cardRepository = cardRepository;
+        this.encryptService = encryptService;
     }
 
     @Override
@@ -27,15 +33,17 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public List<Card> getCards() {
+    public List<CardDto> getCards() {
 
-        return cardRepository.findAll();
+        return cardRepository.findAll().stream()
+                .map(card -> card.toDto(encryptService))
+                .collect(Collectors.toList());
     }
 
     @Override
     public Card saveCard(CardDto cardDto) {
 
-        Card card = cardDto.toEntity();
+        Card card = cardDto.toEntity(encryptService);
 
         Card savedCard = cardRepository.save(card);
 
@@ -55,11 +63,11 @@ public class CardServiceImpl implements CardService {
                 .id(cardId)
                 .organization(cardDto.getOrganization())
                 .nickName(cardDto.getNickName())
-                .num1(cardDto.getNum1())
-                .num2(cardDto.getNum2())
-                .num3(cardDto.getNum3())
-                .num4(cardDto.getNum4())
-                .cvc(cardDto.getCvc())
+                .num1(encryptService.encrypt(cardDto.getNum1()))
+                .num2(encryptService.encrypt(cardDto.getNum2()))
+                .num3(encryptService.encrypt(cardDto.getNum3()))
+                .num4(encryptService.encrypt(cardDto.getNum4()))
+                .cvc(encryptService.encrypt(cardDto.getCvc()))
                 .month(cardDto.getMonth())
                 .year(cardDto.getYear())
                 .credit(cardDto.isCredit())

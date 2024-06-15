@@ -21,7 +21,7 @@ public class CardController {
     }
 
     @GetMapping()
-    public ResponseData<List<Card>> getCards() {
+    public ResponseData<List<CardDto>> getCards() {
         return new ResponseData<>(cardService.getCards());
     }
 

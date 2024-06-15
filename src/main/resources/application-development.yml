@@ -54,3 +54,6 @@ google:
     uri: http://localhost:8814/auth/google
   client_id: 613109413062-hmgsj2dgieqm9a6acr58rj7ei0n911e7.apps.googleusercontent.com
   client_secret: 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
+
+symmetric:
+  key: SYMMETRIC_KEY
