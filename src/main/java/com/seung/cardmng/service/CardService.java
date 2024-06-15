@@ -9,8 +9,8 @@ public interface CardService {
 
     List<CardDto> getCards();
     Card getCard(int cardId);
-    Card saveCard(CardDto cardDto);
-    Card updateCard(int cardId, CardDto cardDto);
+    CardDto saveCard(CardDto cardDto);
+    CardDto updateCard(int cardId, CardDto cardDto);
     String deleteCard(int cardId);
 
 }

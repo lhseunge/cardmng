@@ -41,23 +41,23 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public Card saveCard(CardDto cardDto) {
+    public CardDto saveCard(CardDto cardDto) {
 
         Card card = cardDto.toEntity(encryptService);
 
         Card savedCard = cardRepository.save(card);
 
         if (savedCard == null) {
-            System.out.println("실패");
+            throw new CustomException(ErrorCode.FAIL_SAVE_CARD);
         }
 
         cardRepository.flush();
 
-        return card;
+        return card.toDto(encryptService);
     }
 
     @Override
-    public Card updateCard(int cardId, CardDto cardDto) {
+    public CardDto updateCard(int cardId, CardDto cardDto) {
 
         Card card = Card.builder()
                 .id(cardId)
@@ -75,7 +75,8 @@ public class CardServiceImpl implements CardService {
                 .etc(cardDto.getEtc())
                 .build();
 
-        return cardRepository.save(card);
+        return cardRepository.save(card)
+                .toDto(encryptService);
     }
 
     @Override
